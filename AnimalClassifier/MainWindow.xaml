@@ -1,0 +1,46 @@
+﻿<Window x:Class="AnimalClassifier.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimalClassifier"
+        mc:Ignorable="d"
+        Title="Cats vs. Dogs" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Margin="10">
+            <Button Content="Select Image"
+                    HorizontalAlignment="Center"
+                    Click="Button_Click"/>
+            <Image x:Name="selectedImage"
+                   Margin="0 10 0 0"
+                   MaxWidth="500"
+                   MaxHeight="400"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" 
+                    Orientation="Vertical" 
+                    VerticalAlignment="Center"
+                    Margin="0 0 20 0">
+            <TextBlock FontSize="40" 
+                       HorizontalAlignment="Center"
+                       x:Name="predictionsListLabel"/>
+            <ListView x:Name="predictionsListView"
+                      Width="200">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Tag" 
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding TagName}"/>
+                        <GridViewColumn Header="Probability" 
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding Path=Probability, StringFormat=P2}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
